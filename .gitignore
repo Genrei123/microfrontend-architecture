@@ -1,0 +1,45 @@
+# Dependencies (root and each micro-frontend)
+node_modules/
+
+# Vite and production build output
+dist/
+dist-ssr/
+.vite/
+.mf/
+@mf-types/
+tailwind.generated.css
+
+# Test, coverage, and tooling output
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+.eslintcache
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Local environment files and secrets
+.env
+.env.*
+!.env.example
+*.local
+
+# Editor and OS files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

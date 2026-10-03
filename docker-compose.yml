@@ -1,0 +1,47 @@
+services:
+  cart:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP: cart
+    ports:
+      - '5001:80'
+    healthcheck:
+      test: ['CMD-SHELL', 'wget --spider --quiet http://localhost/remoteEntry.js']
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  products:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP: products
+    ports:
+      - '5002:80'
+    depends_on:
+      cart:
+        condition: service_healthy
+    healthcheck:
+      test: ['CMD-SHELL', 'wget --spider --quiet http://localhost/remoteEntry.js']
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  shell:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP: shell
+    ports:
+      - '5000:80'
+    depends_on:
+      cart:
+        condition: service_healthy
+      products:
+        condition: service_healthy

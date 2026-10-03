@@ -1,0 +1,30 @@
+{
+  "name": "micro-frontend-vite-shopping",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "css:build": "tailwindcss -i apps/shell/src/tailwind.input.css -o apps/shell/src/tailwind.generated.css && tailwindcss -i apps/products/src/tailwind.input.css -o apps/products/src/tailwind.generated.css && tailwindcss -i apps/cart/src/tailwind.input.css -o apps/cart/src/tailwind.generated.css",
+    "prebuild:remotes": "npm run css:build",
+    "build:cart": "npm --prefix apps/cart run build",
+    "build:products": "npm --prefix apps/products run build",
+    "build:remotes": "npm run build:cart && npm run build:products",
+    "serve:cart": "npm --prefix apps/cart run preview",
+    "serve:products": "npm --prefix apps/products run preview",
+    "serve:shell": "npm --prefix apps/shell run dev",
+    "dev": "npm run build:remotes && concurrently --kill-others-on-fail --names cart,products,shell --prefix-colors cyan,magenta,green \"npm run serve:cart\" \"npm run serve:products\" \"npm run serve:shell\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "concurrently": "^9.2.1",
+    "prettier": "^3.8.2",
+    "tailwindcss": "^4.3.3"
+  }
+}

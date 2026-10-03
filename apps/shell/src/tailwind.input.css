@@ -1,0 +1,19 @@
+@import 'tailwindcss';
+@source "./**/*.{ts,tsx}";
+@source "../../products/src";
+@source "../../cart/src";
+@layer base {
+  body {
+    @apply m-0 min-w-80 bg-stone-50 text-slate-900 antialiased;
+  }
+  button,
+  a,
+  input,
+  select {
+    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600;
+  }
+  button,
+  a {
+    @apply touch-manipulation;
+  }
+}
